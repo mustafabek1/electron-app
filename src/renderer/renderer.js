@@ -1,9 +1,9 @@
 const { ipcRenderer } = require("electron");
 
 async function fetchData() {
-    console.log("Renderer: API isteği gönderiliyor...");
+
     const data = await ipcRenderer.invoke('fetch-data');
-    console.log("Renderer: API'den dönen veri:", data);
+
     document.getElementById("dataInput").value = data.storedData.join(", ");
 }
 
@@ -14,9 +14,7 @@ async function sendData() {
         return;
     }
 
-    console.log("Renderer: API'ye veri gönderiliyor...");
     const response = await ipcRenderer.invoke("send-data", text);
-    console.log("Renderer: API yanıtı:", response);
     
     alert("Veri başarıyla gönderildi!");
 }
@@ -44,8 +42,6 @@ saveButton.addEventListener('click', () => {
     localStorage.setItem('savedText', textInput.value);
     alert('Metin başarıyla kaydedildi!');
 });
-
-// input event listener'ı kaldırıldı çünkü artık otomatik kaydetmeyeceğiz
 
 // Volume slider için gerekli değişkenler
 const volumeSlider = document.getElementById('volume-slider');

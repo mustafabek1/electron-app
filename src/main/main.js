@@ -37,12 +37,10 @@ ipcMain.handle("set-volume", async (_, value) => {
 
 ipcMain.handle('fetch-data', async () => {
     try {
-        console.log('Fetching data from API...');
         const response = await axios.get('http://localhost:3000/data');
-        console.log('Data fetched from API:', response.data);
+
         return response.data;
     } catch (error) {
-        console.error('Error fetching data:', error);
         return { storedData: [] };
     }
 });
@@ -50,10 +48,9 @@ ipcMain.handle('fetch-data', async () => {
 ipcMain.handle("send-data", async (_, text) => {
     try {
         const response = await axios.post("http://localhost:3000/data", { text });
-        console.log("Server Yanıtı:", response.data);
+
         return response.data;
     } catch (error) {
-        console.error("POST isteği başarısız:", error);
         return { error: "Gönderme başarısız!" };
     }
 });
