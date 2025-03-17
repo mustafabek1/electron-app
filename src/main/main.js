@@ -11,8 +11,9 @@ app.whenReady().then(() => {
         width: 700,
         height: 400,
         webPreferences: {
+            preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false 
         },
     });
 
